@@ -31,6 +31,15 @@ jobs:
             git rm -q incoming/$name.*
             git add "$target"
           done
+          for c in incoming/*.copy; do
+            [ -e "$c" ] || continue
+            read src dst sha < "$c"
+            mkdir -p "$(dirname "$dst")"
+            cp "$src" "$dst"
+            echo "$sha  $dst" | sha256sum -c
+            git rm -q "$c"
+            git add "$dst"
+          done
           git config user.name github-actions
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           if ! git diff --cached --quiet; then git commit -qm a && git push; fi
