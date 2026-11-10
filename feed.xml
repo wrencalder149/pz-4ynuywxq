@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+ <channel>
+  <title>All-In 台灣中文濃縮版（私人）</title>
+  <description>All-In Podcast 每集自動轉錄、翻譯成台灣繁中並合成語音的私人濃縮版。僅供個人收聽，請勿公開分享。</description>
+  <language>zh-TW</language>
+  <itunes:block>Yes</itunes:block>
+  <itunes:explicit>false</itunes:explicit>
+  <link>https://wrencalder149.github.io/pz-4ynuywxq/</link>
+  <itunes:author>private</itunes:author>
+  <item>
+   <title>E296｜Midterm Blood Bath, $4T AI Sell Off, Data Center Freeze, What&#x27;s Next for Trump</title>
+   <guid isPermaLink="false">zh-53093a95-1b90-4228-aaf2-2d8ee77fd504</guid>
+   <pubDate>Sat, 07 Nov 2026 18:27:00 +0000</pubDate>
+   <enclosure url="https://wrencalder149.github.io/pz-4ynuywxq/ep/E296.mp3" length="15590331" type="audio/mpeg"/>
+   <itunes:duration>21:39</itunes:duration>
+   <description>All-In Podcast 台灣繁中濃縮版（私人自用，edge-tts 合成）。</description>
+  </item>
+ </channel>
+</rss>

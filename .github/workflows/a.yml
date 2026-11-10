@@ -1,0 +1,36 @@
+name: a
+on:
+  push:
+    paths: ['incoming/**']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: a
+  cancel-in-progress: false
+jobs:
+  a:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - name: assemble
+        run: |
+          set -e
+          git pull -q --ff-only || true
+          for m in incoming/*.manifest; do
+            [ -e "$m" ] || continue
+            name=$(basename "$m" .manifest)
+            read target sha n < "$m"
+            have=$(ls incoming/$name.part* 2>/dev/null | wc -l)
+            if [ "$have" -ne "$n" ]; then echo "waiting $name $have/$n"; continue; fi
+            mkdir -p "$(dirname "$target")"
+            cat $(ls incoming/$name.part* | sort) | base64 -d > "$target"
+            echo "$sha  $target" | sha256sum -c
+            git rm -q incoming/$name.*
+            git add "$target"
+          done
+          git config user.name github-actions
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          if ! git diff --cached --quiet; then git commit -qm a && git push; fi
